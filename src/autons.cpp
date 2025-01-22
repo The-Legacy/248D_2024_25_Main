@@ -181,102 +181,84 @@ void rushBlue(){
 }
 
 void skills(){
-    chassis.setPose(-60.5, 0, 90);
-    hooks.move_relative(1500, 600);
-    pros::delay(500);
-    chassis.moveToPoint(-46.7, 0, 1250, {.maxSpeed = 60});
-    chassis.turnToPoint(-46.7, 23.5, 1000, {.forwards = false});
-    chassis.moveToPoint(-46.7, 23.5, 1250, {.forwards = false, .maxSpeed = 60}, false);
-    Clamp.set_value(HIGH);
-    intake.move(127);
-    chassis.turnToPoint(-23.5, 23.5, 1000, {}, false);
-    currState = 1;
-    target = states[currState];
-    chassis.moveToPoint(-23.5, 23.5, 1000, {.maxSpeed = 75, .minSpeed = 60, .earlyExitRange = 2});
-
-
-    chassis.moveToPose(0, 65, 0, 2500, {.lead = 0.25, .maxSpeed = 60});
-    chassis.waitUntil(23);
-    intake.move(0);
-    currState = 2;
-    target = states[currState];
-    chassis.waitUntilDone();
-    intake.move(127);
+    chassis.setPose(0, 0,30);
     currState = 3;
     target = states[currState];
-    pros::delay(1150);
-    
-    intake.move(0);
-    intake.move_relative(-600, 127);
-    
-    
-    moveRelative(-10, 70, 1000);
-    chassis.waitUntilDone();
-    currState = 0;
-    target = states[currState];
-    chassis.waitUntilDone();
-    intake.move(127);
-    chassis.moveToPose(-59, 48.5, 270, 3000, {.maxSpeed = 60});
-    chassis.turnToPoint(-47, 59, 1000);
-    chassis.moveToPoint(-47, 59, 1500, {.maxSpeed = 60}, false);
-    chassis.turnToPoint(-38.317, 55, 1250, {}, false);
-    Clamp.set_value(LOW);
-    moveRelative(-15, 65, 1250);
-    chassis.turnToPoint(-23.5, -23.5, 1000, {.forwards = false, .maxSpeed = 60});
-
-    //2nd half
-
-    chassis.moveToPose(-53, -23.5, 0, 3500, {.forwards = false, .maxSpeed = 75}, false);
-    Clamp.set_value(HIGH);
-    intake.move(127);
-    chassis.turnToPoint(-23.5, -20, 1000);
-    currState = 1;
-    target = states[currState];
-    chassis.moveToPoint(-30, -18, 1150, {.maxSpeed = 75, .minSpeed = 60, .earlyExitRange = 2});
-
-
-    chassis.moveToPose(-1, -65, 195, 3000, {.lead = 0.2, .maxSpeed = 55});
-    chassis.waitUntil(36);
-    intake.move(0);
+    pros::delay(750);
     currState = 2;
     target = states[currState];
-    chassis.waitUntilDone();
-    intake.move(127);
-    currState = 3;
-    target = states[currState];
-    pros::delay(1150);
-    
-    intake.move(0);
-    intake.move_relative(-600, 127);
+    chassis.moveToPoint(-16, -12, 1100, {.forwards = false, .maxSpeed=50}, false);
+    pros::delay(250);
+    Clamp.set_value(HIGH);
+    pros::delay(250);
+    chassis.turnToPoint(-20, -36, 1000);
+    intake.move(-127);
+    chassis.moveToPoint(-20, -34, 1250, {.maxSpeed=80, .minSpeed=70});
+    // chassis.turnToPoint(-46, -86, 1500, {.maxSpeed=80, .minSpeed=70});
+    // chassis.moveToPoint(-40, -86, 1500, {.maxSpeed=80, .minSpeed=70}, false);
+    //pros::delay(1750);
+    //chassis.moveToPoint(-46, -109, 1000, {.maxSpeed=80, .minSpeed=70}, false);
 
+    //wall stake
+    // currState = 1;
+    // target = states[currState];
+    // pros::delay(500);
+    // chassis.moveToPoint(-40, -70, 1500, {.forwards=false, .maxSpeed=70, .minSpeed=60}, false);
+    chassis.turnToPoint(-82, -84, 1000);
+    chassis.moveToPoint(-82, -84, 1000, {.maxSpeed=80}, false);
+    // intake.move(0);
+    // currState = 3;
+    // target = states[currState];
+    // pros::delay(1000);
+    // intake.move(-127);
+    // currState = 2;
+    // target = states[currState];
+    // pros::delay(750);
 
-    moveRelative(-10, 70, 1000);
-    chassis.waitUntilDone();
+    //other four
+    //chassis.moveToPoint(-47, -70, 1500, {.forwards=false, .maxSpeed=80, .minSpeed=60}, false);
+    chassis.turnToPoint(-47, -20, 1000);
+    chassis.moveToPoint(-47, 0, 1500, {.maxSpeed=65, .minSpeed=50}, false);
+    chassis.moveToPoint(-30, -12, 1500, {.forwards=false, .maxSpeed=80});
+    chassis.moveToPoint(-53, -12, 1500, {.maxSpeed=80});
+    chassis.turnToPoint(0, -100, 1000);
+    chassis.moveToPoint(-60, 0, 1000, {.forwards=false, .maxSpeed=90});
+    Clamp.set_value(LOW);
     currState = 0;
     target = states[currState];
-    chassis.waitUntilDone();
-    intake.move(127);
-    chassis.moveToPose(-65, -48.5, 270, 3000, {.maxSpeed = 60});
-    chassis.turnToPoint(-52, -59, 1000);
-    chassis.moveToPoint(-52, -59, 1500, {.maxSpeed = 60}, false);
-    chassis.turnToPoint(-43.317, -55, 1250, {}, false);
-    Clamp.set_value(LOW);
-    moveRelative(-15, 65, 1250);
     intake.move(0);
-    hooks.move_relative(-700, 127);
-    preroller.move(127);
-    chassis.moveToPoint(0, -45, 2500, {.maxSpeed = 60, .minSpeed = 40, .earlyExitRange = 5});
-    chassis.moveToPoint(23.5, -23.5, 2500, {.maxSpeed = 60});
-    chassis.turnToPoint(43, 0, 1000, {.forwards = false, .maxSpeed = 60});
-    chassis.moveToPoint(43, 0, 1500, {.forwards = false, .maxSpeed = 60}, false);
+    chassis.moveToPoint(-53, -20, 1000, {.maxSpeed=90});
+    
+    //second goal
+    chassis.moveToPoint(20, -5, 2500, {.forwards=false, .maxSpeed=60}, false);
+    pros::delay(250);
     Clamp.set_value(HIGH);
-    hooks.move(127);
-    chassis.moveToPoint(23.5, -47.5, 1500);
-    chassis.moveToPoint(47.5, -59, 1500);
-    moveRelative(-10, 70, 1000);
-    chassis.moveToPoint(47.5, -47.5, 1500);
-    moveRelative(-15, 70, 1000);
-    chassis.turnToPoint(62, -67, 1500, {.forwards = false, .maxSpeed = 60}, false);
+    intake.move(-127);
+
+    //first second donut
+    chassis.turnToPoint(30, -28, 1000);
+    chassis.moveToPoint(30, -28, 1500, {.maxSpeed=85});
+
+    //second second
+    chassis.turnToPoint(63, -50, 1000);
+    chassis.moveToPoint(63, -50, 1000, {.maxSpeed=85});
+
+    //other four
+    chassis.turnToPoint(51, -30, 1000);
+    chassis.moveToPoint(51, -30, 1500, {.maxSpeed=85});
+    chassis.turnToPoint(51, 0, 1000);
+    chassis.moveToPoint(51, 0, 1500, {.maxSpeed=65});
+    chassis.moveToPoint(35, -2, 1000, {.forwards=false, .maxSpeed=85});
+    chassis.moveToPoint(60, -2, 1500,{.maxSpeed=85});
+    chassis.turnToPoint(0, -100, 1000);
+    chassis.moveToPoint(65, 8, 1000, {.forwards=false, .maxSpeed=85});
     Clamp.set_value(LOW);
-    chassis.moveToPoint(62, -67, 1500, {.forwards = false, .maxSpeed = 60}, false);
+    chassis.moveToPoint(-32, -99, 3500, {.maxSpeed=90});
+    chassis.waitUntil(80);
+    intake.move(0);
+    chassis.turnToPoint(-82, -84, 1000);
+    chassis.moveToPoint(5, -120, 1500, {.forwards=false, .maxSpeed=85}, false);
+    Clamp.set_value(HIGH);
+    chassis.moveToPoint(-40, -120, 1500, {.maxSpeed=85});
+    intake.move(-127);
 }
