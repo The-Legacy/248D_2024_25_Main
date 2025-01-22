@@ -217,8 +217,8 @@ void skills(){
 
     //other four
     //chassis.moveToPoint(-47, -70, 1500, {.forwards=false, .maxSpeed=80, .minSpeed=60}, false);
-    chassis.turnToPoint(-47, -20, 1000);
-    chassis.moveToPoint(-47, 0, 1500, {.maxSpeed=65, .minSpeed=50}, false);
+    chassis.turnToPoint(-44, -20, 1000);
+    chassis.moveToPoint(-44, 0, 1500, {.maxSpeed=65, .minSpeed=50}, false);
     chassis.moveToPoint(-30, -12, 1500, {.forwards=false, .maxSpeed=80});
     chassis.moveToPoint(-53, -12, 1500, {.maxSpeed=80});
     chassis.turnToPoint(0, -100, 1000);
@@ -244,21 +244,22 @@ void skills(){
     chassis.moveToPoint(63, -50, 1000, {.maxSpeed=85});
 
     //other four
-    chassis.turnToPoint(51, -30, 1000);
-    chassis.moveToPoint(51, -30, 1500, {.maxSpeed=85});
-    chassis.turnToPoint(51, 0, 1000);
-    chassis.moveToPoint(51, 0, 1500, {.maxSpeed=65});
+    chassis.turnToPoint(49, -30, 1000);
+    chassis.moveToPoint(49, -30, 1500, {.maxSpeed=85});
+    chassis.turnToPoint(49, 0, 1000);
+    chassis.moveToPoint(49, 0, 1500, {.maxSpeed=65});
     chassis.moveToPoint(35, -2, 1000, {.forwards=false, .maxSpeed=85});
     chassis.moveToPoint(60, -2, 1500,{.maxSpeed=85});
     chassis.turnToPoint(0, -100, 1000);
     chassis.moveToPoint(65, 8, 1000, {.forwards=false, .maxSpeed=85});
     Clamp.set_value(LOW);
-    chassis.moveToPoint(-32, -99, 3500, {.maxSpeed=90});
+    chassis.moveToPoint(-38, -99, 3500, {.maxSpeed=90});
     chassis.waitUntil(80);
     intake.move(0);
     chassis.turnToPoint(-82, -84, 1000);
-    chassis.moveToPoint(5, -120, 1500, {.forwards=false, .maxSpeed=85}, false);
-    Clamp.set_value(HIGH);
-    chassis.moveToPoint(-40, -120, 1500, {.maxSpeed=85});
-    intake.move(-127);
+    chassis.moveToPoint(65, -115, 5000, {.forwards=false, .maxSpeed=85}, false);
+    chassis.moveToPoint(-65, -115, 5000);
+    // Clamp.set_value(HIGH);
+    // chassis.moveToPoint(-40, -120, 1500, {.maxSpeed=85});
+    // intake.move(-127);
 }
