@@ -49,38 +49,28 @@ void redSoloWP(){
 }
 
 void blueSoloWP(){
-    //grab first goal
-    chassis.setPose(48.912,-36.043,115);
-    chassis.moveToPoint(29.665, -26.604, 2000, { .forwards = false, .maxSpeed = 75}, false);
-    Clamp.set_value(HIGH);
-    intake.move(127);
-    pros::delay(100);
-    //grab 1st ring
-    chassis.turnToPoint(21, -49, 1500);
-    chassis.moveToPoint(21, -49, 2000, {}, false);
-    pros::delay(1750);
-    //go to alliance stake 2 stack
-    chassis.turnToPoint(48, 4, 1250, {}, false);
     Clamp.set_value(LOW);
-    chassis.moveToPoint(48, 4, 2250);
-    hooks.brake();
-    chassis.waitUntil(10);
-    preroller.move_velocity(200);
-    inLift.set_value(HIGH);
-    chassis.waitUntilDone();
-    inLift.set_value(LOW);
-    //sort out blue ring
-    chassis.turnToPoint(25.187, 21.741, 1000, {.forwards = false});
-    chassis.waitUntil(15);
-    chassis.moveToPoint(25.187, 21.741, 1500, {.forwards = false, .maxSpeed = 65}, false);
-    chassis.waitUntil(5);
+    chassis.setPose(0, 0, 323);
+    chassis.moveToPose(7.5, 9.5, 323, 2000, {.maxSpeed = 110, .minSpeed = 60});
+    chassis.waitUntil(7);
+    currState = 3;
+    target = states[currState];
+    pros::delay(1250);
+    currState = 0;
+    target = states[currState];
+    chassis.moveToPose(-20, -21, 323, 2500, {.forwards=false, .maxSpeed = 90, .minSpeed = 60}, false);
+    pros::delay(750);
     Clamp.set_value(HIGH);
-    pros::delay(100);
-    hooks.move(127);
-    chassis.turnToPoint(19, 5.5, 1000);
-    chassis.moveToPoint(19, 5.5, 1500, {.maxSpeed = 50});
-    chassis.waitUntil(5);
-    intake.brake();
+    pros::delay(250);
+    intake.move(-127);
+    chassis.turnToPoint(-40, -25.5, 1000);
+    chassis.moveToPose(-40, -25.5, 110, 1500, {.maxSpeed = 110, .minSpeed = 60});
+    pros::delay(750);
+    chassis.turnToPoint(-44, -35, 1000);
+    chassis.moveToPoint(-44, -35, 1500, {.maxSpeed = 110, .minSpeed = 60});
+    pros::delay(750);
+    chassis.moveToPose(-45, -30, 90, 2000, {.forwards=false, .maxSpeed = 110, .minSpeed = 60});
+    chassis.moveToPose(10, -30, 90, 4000, {.maxSpeed = 60, .minSpeed = 50});
 }
 
 void fourRingRed(){
