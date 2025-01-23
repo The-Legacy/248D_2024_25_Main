@@ -85,6 +85,8 @@ void redGoalRush(){
     Clamp.set_value(HIGH);
     pros::delay(1500);
     intake.move(-127);
+    pros::delay(1000);
+    chassis.moveToPoint(-4.244, -22.952, 3000, {.maxSpeed=60, .minSpeed=40});
 }
 
 void blueGoalRush(){
@@ -99,42 +101,36 @@ void blueGoalRush(){
     Clamp.set_value(HIGH);
     pros::delay(1500);
     intake.move(-127);
+    pros::delay(1000);
+    chassis.moveToPoint(6.527, -24.299, 3000, {.maxSpeed=60, .minSpeed=40});
 }
 
-void disruptRed(){
-    chassis.setPose(-46.489,31.313,70);
+void redFourDonut(){
+    chassis.setPose(-59.713, 23.362, 270);
+    chassis.moveToPoint(-23.362, 23.092, 1500, {.forwards=false, .maxSpeed=85, .minSpeed=60});
     inLift.set_value(HIGH);
-    chassis.moveToPoint(-6, 46, 2000, {.maxSpeed = 100});
-    chassis.moveToPoint(-23.5, 47, 1500, {.forwards = false, .maxSpeed = 60}, false);
-    chassis.turnToPoint(-23.5, 23.5, 1000, {.forwards = false});
-    chassis.moveToPoint(-23.5, 23.5, 1250, {.forwards = false, .maxSpeed = 60}, false);
-    Clamp.set_value(HIGH);
-    chassis.moveToPoint(-23.5, 23.5, 750, {.forwards = false, .maxSpeed = 70}, false);
-    intake.move(127);
-    inLift.set_value(LOW);
-    pros::delay(200);
-    chassis.moveToPoint(-19.341, 41.123, 1000);
-    chassis.swingToHeading(180, lemlib::DriveSide::LEFT, 1250, {.direction = AngularDirection::CCW_COUNTERCLOCKWISE, .maxSpeed = 60});
-    chassis.turnToPoint(-48.191, 19.983, 1500);
-    chassis.moveToPoint(-48.191, 19.983, 1500);
+    pros::delay(750);
+    intake.move(-127);
+    chassis.moveToPose(-5.59, 40.056, 0, 1500, {.maxSpeed=85, .minSpeed=65});
+    chassis.moveToPoint(-5.859, 58.251, 1500, {.maxSpeed=90, .minSpeed=65});
+    pros::delay(750);
+    chassis.moveToPoint(-23.092, 48.134, 1500);
+    pros::delay(750);
+    chassis.moveToPoint(-24.439, 1.551, 2500, {.maxSpeed=55, .minSpeed=40});
 }
 
-void disruptBlue(){
-    chassis.setPose(46.489,31.313,290);
+void blueFourDonut(){
+    chassis.setPose(58.765, 23.631, 90);
+    chassis.moveToPoint(29.684, 24.17, 1500, {.forwards=false, .maxSpeed=85, .minSpeed=60});
     inLift.set_value(HIGH);
-    chassis.moveToPoint(6, 46, 2000, {.maxSpeed = 100});
-    chassis.moveToPoint(23.5, 47, 1500, {.forwards = false, .maxSpeed = 60}, false);
-    chassis.turnToPoint(23.5, 23.5, 1000, {.forwards = false});
-    chassis.moveToPoint(23.5, 23.5, 1250, {.forwards = false, .maxSpeed = 60}, false);
-    Clamp.set_value(HIGH);
-    chassis.moveToPoint(23.5, 23.5, 750, {.forwards = false, .maxSpeed = 70}, false);
-    intake.move(127);
-    inLift.set_value(LOW);
-    pros::delay(200);
-    chassis.moveToPoint(19.341, 41.123, 1000);
-    chassis.swingToHeading(180, lemlib::DriveSide::RIGHT, 1250, {.direction = AngularDirection::CW_CLOCKWISE, .maxSpeed = 60});
-    chassis.turnToPoint(48.191, 19.983, 1500);
-    chassis.moveToPoint(48.191, 19.983, 1500);
+    pros::delay(750);
+    intake.move(-127);
+    chassis.moveToPose(7.335, 36.287, 0, 1500, {.maxSpeed=85, .minSpeed=65});
+    chassis.moveToPoint(7.066, 55.943, 1500, {.maxSpeed=90, .minSpeed=65});
+    pros::delay(750);
+    chassis.moveToPoint(24.299, 46.519, 1500);
+    pros::delay(750);
+    chassis.moveToPoint(23.222, 2.359, 2500, {.maxSpeed=55, .minSpeed=40});
 }
 
 void rushRed(){

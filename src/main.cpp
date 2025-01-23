@@ -9,8 +9,8 @@ rd::Selector Match_autos({
 	{"Blue goal rush", &blueGoalRush},
 	{"Red rush", &rushRed},
 	{"Blue rush", &rushBlue},
-	{"Red disrupt", &disruptRed},
-	{"Blue disrupt", &disruptBlue},
+	{"Red Four Donut", &redFourDonut},
+	{"Blue Four Donut", &blueFourDonut},
 	
 });
 
