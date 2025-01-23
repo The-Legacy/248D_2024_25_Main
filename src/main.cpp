@@ -11,6 +11,7 @@ rd::Selector Match_autos({
 	{"Blue rush", &rushBlue},
 	{"Red Four Donut", &redFourDonut},
 	{"Blue Four Donut", &blueFourDonut},
+	{"Skills Yolo", &skillsYolo},
 	
 });
 

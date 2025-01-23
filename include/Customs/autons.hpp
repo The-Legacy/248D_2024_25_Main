@@ -7,3 +7,4 @@ void blueFourDonut();
 void rushBlue();
 void rushRed();
 void skills();
+void skillsYolo();
