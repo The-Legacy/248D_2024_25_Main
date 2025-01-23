@@ -50,15 +50,15 @@ void redSoloWP(){
 
 void blueSoloWP(){
     Clamp.set_value(LOW);
-    chassis.setPose(0, 0, 323);
-    chassis.moveToPose(7.5, 9.5, 323, 2000, {.maxSpeed = 110, .minSpeed = 60});
+    chassis.setPose(0, 0, 37);
+    chassis.moveToPose(7.5, 9.5, 37, 2000, {.maxSpeed = 110, .minSpeed = 60});
     chassis.waitUntil(7);
     currState = 3;
     target = states[currState];
     pros::delay(1250);
     currState = 0;
     target = states[currState];
-    chassis.moveToPose(-20, -21, 323, 2500, {.forwards=false, .maxSpeed = 90, .minSpeed = 60}, false);
+    chassis.moveToPose(-20, -21, 37, 2500, {.forwards=false, .maxSpeed = 90, .minSpeed = 60}, false);
     pros::delay(750);
     Clamp.set_value(HIGH);
     pros::delay(250);
@@ -73,57 +73,32 @@ void blueSoloWP(){
     chassis.moveToPose(10, -30, 90, 4000, {.maxSpeed = 60, .minSpeed = 50});
 }
 
-void fourRingRed(){
-    //grab first goal
-    chassis.setPose(-48.912,-36.043,245);
-    chassis.moveToPoint(-23.5, -23.5, 2000, { .forwards = false, .maxSpeed = 60}, false);
-    Clamp.set_value(HIGH);
-    intake.move(127);
-    pros::delay(100);
-    //grab 1st ring
-    chassis.turnToPoint(-24, -49, 1500);
-    chassis.moveToPoint(-24, -49, 2000, {}, false);
-    pros::delay(1750);
-    //go to alliance stake 2 stack
-    chassis.turnToPoint(-50, 4, 1250, {}, false);
-    chassis.moveToPoint(-50, 4, 3000, {.maxSpeed = 60});
-    chassis.waitUntil(5);
+void redGoalRush(){
+    chassis.setPose(-58.367, -32.377,90);
+    preroller.move(-127);
+    chassis.moveToPoint(-9.629, -51.226, 1500, {.maxSpeed=100, .minSpeed=60});
     inLift.set_value(HIGH);
-    chassis.waitUntilDone();
+    pros::delay(750);
+    chassis.moveToPose(-23.092, -41.801, 180, 1500, {.forwards=false, .maxSpeed=100, .minSpeed=60}, false);
     inLift.set_value(LOW);
-    pros::delay(250);
-    chassis.moveToPoint(-14.737, -58.573, 1250, {.forwards = false, .maxSpeed = 70});
-    // chassis.moveToPoint(-23.5, 0,1500);
-    intake.brake();
-    
-    // chassis.turnToPoint(-66.101, -66.745, 1000, {.forwards = false},false);
-    // Clamp.set_value(LOW);
-    chassis.turnToHeading(270, 1000);
+    chassis.moveToPoint(-23.631, -23.491, 1500, {.forwards=false, .maxSpeed=85, .minSpeed=60}, false);
+    Clamp.set_value(HIGH);
+    pros::delay(1500);
+    intake.move(-127);
 }
 
-void fourRingBlue(){
-    //grab first goal
-    chassis.setPose(48.912,-36.043,115);
-    chassis.moveToPoint(23.5, -23.5, 2000, { .forwards = false, .maxSpeed = 60}, false);
-    Clamp.set_value(HIGH);
-    intake.move(127);
-    pros::delay(100);
-    //grab 1st ring
-    chassis.turnToPoint(24, -49, 1500);
-    chassis.moveToPoint(24, -49, 2000, {}, false);
-    pros::delay(1750);
-    //go to alliance stake 2 stack
-    chassis.turnToPoint(50, 4, 1250, {}, false);
-    chassis.moveToPoint(50, 4, 3000, {.maxSpeed = 60});
-    chassis.waitUntil(5);
+void blueGoalRush(){
+    chassis.setPose(58.765, -59.842,270);
+    preroller.move(-127);
+    chassis.moveToPoint(10.028, -45.571, 1500, {.maxSpeed=100, .minSpeed=60});
     inLift.set_value(HIGH);
-    chassis.waitUntilDone();
+    pros::delay(750);
+    chassis.moveToPose(25.376, -40.186, 180, 1500, {.forwards=false, .maxSpeed=100, .minSpeed=60}, false);
     inLift.set_value(LOW);
-    pros::delay(250);
-    chassis.moveToPoint(34.526, -18.939, 1250, {.forwards = false, .maxSpeed = 50});
-    chassis.moveToPoint(23.5, 0,1500);
-    intake.brake();
-
+    chassis.moveToPoint(23.491, -24.299, 1500, {.forwards=false, .maxSpeed=85, .minSpeed=60}, false);
+    Clamp.set_value(HIGH);
+    pros::delay(1500);
+    intake.move(-127);
 }
 
 void disruptRed(){

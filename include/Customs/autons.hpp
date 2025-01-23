@@ -1,7 +1,7 @@
 void redSoloWP();
 void blueSoloWP();
-void fourRingRed();
-void fourRingBlue();
+void redGoalRush();
+void blueGoalRush();
 void disruptBlue();
 void disruptRed();
 void rushBlue();
