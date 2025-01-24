@@ -2,6 +2,7 @@
 #include "pros/adi.hpp"
 #include "pros/misc.h"
 #include "pros/misc.hpp"
+#include "pros/rtos.hpp"
 
 int wallMech = 0;
 static bool toggle{false};
@@ -30,14 +31,17 @@ bool isJamHandled = true;
 //   }
 // }
 
+pros::Task antijammer(intakeTask);
+
 void setIntakes() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+      antijammer.suspend();
       hooks.move_velocity(600);
       preroller.move_velocity(200);
     } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      hooks.move_velocity(-600);
-      preroller.move_velocity(-200);
+      antijammer.resume();
     } else {
+      antijammer.suspend();
       hooks.move_velocity(0);
       preroller.move_velocity(0);
     }
@@ -45,27 +49,11 @@ void setIntakes() {
 
 
   void controlIntake() {
-    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)) {
-        startTime = pros::millis();
-    }
-    int currentIntakeVelocity = hooks.get_actual_velocity();
+
     // When R1 is pressed, run the intake forward
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-        // If the motor is powered but hasn't moved within the first 500ms, reverse briefly
-        if (currentIntakeVelocity == 0 && !isJamHandled && pros::millis() - startTime > 300){
-            // Reverse the motor briefly to un-jam
-            hooks.move(-127);
-            preroller.move(-127);
-            pros::delay(250); // Reverse for 0.25 seconds
-            hooks.move(127);
-            preroller.move(127);
-            isJamHandled = true; // Jam handling is done, don't trigger again
-        } else {
-            // Normal operation for forward intake
-            hooks.move(127);
-            preroller.move(127);
-            isJamHandled = false; // Reset jam handling flag
-        }
+      hooks.move(127);
+      preroller.move(127);
     }
     // When L1 is pressed, run the intake backward
     else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
