@@ -31,17 +31,25 @@ bool isJamHandled = true;
 //   }
 // }
 
-pros::Task antijammer(intakeTask);
-
 void setIntakes() {
+    // opSense.set_led_pwm(100);
+    // opSense.set_integration_time(25);
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      antijammer.suspend();
       hooks.move_velocity(600);
       preroller.move_velocity(200);
     } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      antijammer.resume();
+      hooks.move_velocity(-600);
+      preroller.move_velocity(-200);
+
+      // if (opSense.get_hue() < 30) {
+      //   // Reverse the hook motor if it is going too slow
+      //   hooks.move_velocity(600);
+      //   pros::delay(150); // Delay to allow the motor to reverse
+      //   hooks.move_velocity(-600); // Resume normal operation
+      // }
+
+      // pros::delay(50); // Small delay to prevent excessive CPU usage
     } else {
-      antijammer.suspend();
       hooks.move_velocity(0);
       preroller.move_velocity(0);
     }
@@ -95,7 +103,7 @@ void setLB(){
   if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2)) {
     nextState();
   } else if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
-    currState = 2;
+    currState = 3;
     target = states[currState];
   } else if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
     currState = 1;

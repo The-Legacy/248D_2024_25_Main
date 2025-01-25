@@ -4,7 +4,7 @@
 
 int currState = 0;
 const int numStates = 4;
-int states[numStates] = {0, 510, 1000, 2000};
+int states[numStates] = {0, 522, 1000, 2000};
 int target = 0;
 
 void nextState() {

@@ -28,6 +28,8 @@ extern Imu imu;
 extern Optical colorSort;
 extern Distance localizer;
 
+extern pros::Optical opSense;
+
 extern adi::Pneumatics Clamp;
 extern adi::Pneumatics inLift;
 

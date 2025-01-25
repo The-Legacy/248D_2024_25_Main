@@ -15,6 +15,25 @@ void LBTask() {
     }
 }
 
+void colorSorting(){
+    opSense.set_led_pwm(100);
+    opSense.set_integration_time(25);
+    while (true) {
+        // Run the intake motors
+        hooks.move_velocity(-600);
+        preroller.move_velocity(-200);
+
+        if (opSense.get_hue() < 30) {
+            // Reverse the hook motor if it is going too slow
+            hooks.move_velocity(600);
+            pros::delay(150); // Delay to allow the motor to reverse
+            hooks.move_velocity(-600); // Resume normal operation
+        }
+
+        pros::delay(50); // Small delay to prevent excessive CPU usage
+    }
+}
+
 void intakeTask() {
     uint32_t lastCheckTime = pros::millis();
 
@@ -24,9 +43,9 @@ void intakeTask() {
         preroller.move_velocity(-200);
 
         // Check if a certain amount of time has passed since the last speed check
-        if (pros::millis() - lastCheckTime >= 200) { // Check every 200 ms
+        if (pros::millis() - lastCheckTime >= 500) { // Check every 200 ms
             // Check if the hook motor is going too slow
-            if (hooks.get_actual_velocity() > -100 && currState != 1) {
+            if (hooks.get_actual_velocity() > -5 && currState != 1) {
                 // Reverse the hook motor if it is going too slow
                 hooks.move_velocity(600);
                 pros::delay(150); // Delay to allow the motor to reverse

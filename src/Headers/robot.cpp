@@ -27,6 +27,8 @@ MotorGroup intake({5, 1}, pros::MotorGearset::blue); // intake motors on ports 9
 
 Imu imu(19);
 
+pros::Optical opSense(9);
+
 Rotation latRot(-10);
 Rotation angRot(-6);
 
