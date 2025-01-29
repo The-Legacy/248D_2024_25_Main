@@ -4,14 +4,15 @@
 rd::Selector Match_autos({
 	{"Skills", &skills},
 	{"Red Solo Winpoint", &redSoloWP},
+	{"Blue elims rush", &blueElimsRush},
+	{"Blue goal rush", &blueGoalRush},
+	{"Blue Sig AWP", &blueWP_yippie},
 	{"Blue Solo Winpoint", &blueSoloWP},
 	{"Red goal rush", &redGoalRush},
-	{"Blue goal rush", &blueGoalRush},
-	{"Red rush", &rushRed},
-	{"Blue rush", &rushBlue},
 	{"Red Four Donut", &redFourDonut},
 	{"Blue Four Donut", &blueFourDonut},
 	{"Skills Yolo", &skillsYolo},
+	{"Red Sig AWP", &redWP_yippie},
 	
 });
 
