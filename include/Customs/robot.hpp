@@ -9,6 +9,7 @@
 #include "stormlib/api.hpp"
 #include "robodash/api.h"
 #include "pros/distance.hpp"
+#include "stormlib/clock.hpp"
 
 using namespace pros;
 using namespace lemlib;
@@ -25,7 +26,6 @@ extern MotorGroup intake;
 extern Motor LB;
 
 extern Imu imu;
-extern Optical colorSort;
 extern Distance localizer;
 
 extern pros::Optical opSense;
@@ -48,5 +48,6 @@ extern aRGB TimeLED;
 extern aRGB_manager ledManager;
 
 extern stormlib::clock driverClock;
+extern stormlib::clock autonClock;
 
 extern rd::Console console;

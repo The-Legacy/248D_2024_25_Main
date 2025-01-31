@@ -27,6 +27,10 @@ void moveRelative(float distance, float maxSpeed, int timeout) {
 };
 
 void redSoloWP(){
+    pros::Task colorSort(colorSortingRed);
+    pros::Task suspention(autoClock);
+    colorSort.suspend();
+
     side = false;
     Clamp.set_value(LOW);
     chassis.setPose(0, 0, 323);
@@ -41,7 +45,7 @@ void redSoloWP(){
     pros::delay(750);
     Clamp.set_value(HIGH);
     pros::delay(250);
-    intake.move(-127);
+    colorSort.resume();
     chassis.turnToPoint(48, -25.5, 1000);
     chassis.moveToPose(48, -25.5, 110, 1500, {.maxSpeed = 110, .minSpeed = 60});
     pros::delay(750);
@@ -53,6 +57,10 @@ void redSoloWP(){
 }
 
 void blueSoloWP(){
+    pros::Task colorSort(colorSortingBlue);
+    pros::Task suspention(autoClock);
+    colorSort.suspend();
+
     side = true;
     Clamp.set_value(LOW);
     chassis.setPose(0, 0, 37);
@@ -67,7 +75,7 @@ void blueSoloWP(){
     pros::delay(750);
     Clamp.set_value(HIGH);
     pros::delay(250);
-    intake.move(-127);
+    colorSort.resume();
     chassis.turnToPoint(-40, -22.5, 1000);
     chassis.moveToPose(-40, -22.5, 110, 1500, {.maxSpeed = 110, .minSpeed = 60});
     pros::delay(750);
@@ -79,6 +87,10 @@ void blueSoloWP(){
 }
 
 void redGoalRush(){
+    pros::Task colorSort(colorSortingRed);
+    pros::Task suspention(autoClock);
+    colorSort.suspend();
+
     side = false;
     chassis.setPose(-58.367, -35.377,90);
     preroller.move(-127);
@@ -91,12 +103,16 @@ void redGoalRush(){
     chassis.moveToPoint(-27.631, -23.491, 1500, {.forwards=false, .maxSpeed=85, .minSpeed=60}, false);
     Clamp.set_value(HIGH);
     pros::delay(1500);
-    intake.move(-127);
+    colorSort.resume();
     pros::delay(1000);
     chassis.moveToPoint(-4.244, -22.952, 3000, {.maxSpeed=60, .minSpeed=40});
 }
 
 void blueGoalRush(){
+    pros::Task colorSort(colorSortingBlue);
+    pros::Task suspention(autoClock);
+    colorSort.suspend();
+
     side = true;
     chassis.setPose(44.765, -59.842,270);
     preroller.move(-127);
@@ -110,11 +126,15 @@ void blueGoalRush(){
     pros::delay(500);
     Clamp.set_value(HIGH);
     pros::delay(500);
-    intake.move(-127);
+    colorSort.resume();
     chassis.moveToPoint(21.527, -.299, 3000, {.maxSpeed=55, .minSpeed=40});
 }
 
 void blueElimsRush(){
+    pros::Task colorSort(colorSortingBlue);
+    pros::Task suspention(autoClock);
+    colorSort.suspend();
+
     side = true;
     chassis.setPose(44.765, -59.842,290);
     preroller.move(-127);
@@ -129,7 +149,7 @@ void blueElimsRush(){
     pros::delay(250);
     Clamp.set_value(HIGH);
     pros::delay(250);
-    intake.move(-127);
+    colorSort.resume();
     pros::delay(1000);
     Clamp.set_value(LOW);
     chassis.turnToPoint(13, 53, 1000);
@@ -141,12 +161,16 @@ void blueElimsRush(){
 }
 
 void redFourDonut(){
+    pros::Task colorSort(colorSortingRed);
+    pros::Task suspention(autoClock);
+    colorSort.suspend();
+
     side = false;
     chassis.setPose(-59.713, 23.362, 270);
     chassis.moveToPoint(-23.362, 23.092, 1500, {.forwards=false, .maxSpeed=85, .minSpeed=60});
     inLift.set_value(HIGH);
     pros::delay(750);
-    intake.move(-127);
+    colorSort.resume();
     chassis.moveToPose(-5.59, 40.056, 0, 1500, {.maxSpeed=85, .minSpeed=65});
     chassis.moveToPoint(-5.859, 58.251, 1500, {.maxSpeed=90, .minSpeed=65});
     pros::delay(750);
@@ -156,12 +180,16 @@ void redFourDonut(){
 }
 
 void blueFourDonut(){
+    pros::Task colorSort(colorSortingBlue);
+    pros::Task suspention(autoClock);
+    colorSort.suspend();
+
     side = true;
     chassis.setPose(58.765, 23.631, 90);
     chassis.moveToPoint(29.684, 24.17, 1500, {.forwards=false, .maxSpeed=85, .minSpeed=60});
     inLift.set_value(HIGH);
     pros::delay(750);
-    intake.move(-127);
+    colorSort.resume();
     chassis.moveToPose(7.335, 36.287, 0, 1500, {.maxSpeed=85, .minSpeed=65});
     chassis.moveToPoint(7.066, 55.943, 1500, {.maxSpeed=90, .minSpeed=65});
     pros::delay(750);
@@ -364,6 +392,10 @@ void skillsYolo(){
 }
 
 void redWP_yippie(){
+    pros::Task colorSort(colorSortingRed);
+    pros::Task suspention(autoClock);
+    colorSort.suspend();
+
     side = false;
     chassis.setPose(-55.035, 6.817, 220);
     chassis.moveToPose(-61.5, -0.5, 220, 1000, {.maxSpeed=90, .minSpeed= 60}, false);
@@ -379,18 +411,19 @@ void redWP_yippie(){
     pros::delay(150);
     chassis.turnToPoint(-28, 52, 1000);
     chassis.moveToPoint(-28, 52, 1500, {.maxSpeed = 90, .minSpeed = 60});
-    intake.move(-127);
+    colorSort.resume();
     pros::delay(150);
     chassis.moveToPoint(-42, 35, 2000,{.maxSpeed = 90, .minSpeed = 60}, false);
     chassis.turnToPoint(-42, 0, 1000);
     Clamp.set_value(LOW);
     chassis.moveToPoint(-42, -30, 2500,{.maxSpeed = 70, .minSpeed = 60}, false);
+    colorSort.suspend();
     intake.move(0);
     chassis.turnToPoint(-40.144, -40.073, 1000);
     chassis.moveToPoint(-21.144, -25.073, 1500, {.forwards=false, .maxSpeed = 65, .minSpeed = 50},false);
     pros::delay(150);
     Clamp.set_value(HIGH);
-    intake.move(-127);
+    colorSort.resume();
     chassis.turnToPoint(-14, -50, 1500);
     chassis.moveToPoint(-14, -50, 1500);
     chassis.turnToPoint(-20, 0, 1000);
@@ -398,6 +431,10 @@ void redWP_yippie(){
     }
 
     void blueWP_yippie(){
+        pros::Task colorSort(colorSortingBlue);
+        pros::Task suspention(autoClock);
+        colorSort.suspend();
+
         side = true;
         chassis.setPose(55.035, 6.817, 140);
         chassis.moveToPose(58.5, -3, 220, 1000, {.maxSpeed=90, .minSpeed= 60}, false);
@@ -413,19 +450,20 @@ void redWP_yippie(){
         pros::delay(150);
         chassis.turnToPoint(28, 52, 1000);
         chassis.moveToPoint(28, 52, 1500, {.maxSpeed = 90, .minSpeed = 60});
-        intake.move(-127);
+        colorSort.resume();
         pros::delay(150);
         chassis.moveToPoint(42, 35, 2000,{.maxSpeed = 90, .minSpeed = 60}, false);
         chassis.turnToPoint(46, 0, 1000);
         Clamp.set_value(LOW);
         chassis.moveToPoint(46, -35, 2500,{.maxSpeed = 70, .minSpeed = 60});
         chassis.waitUntil(55);
+        colorSort.suspend();
         intake.move(0);
         chassis.turnToPoint(70.144, -70.073, 1000);
         chassis.moveToPoint(21.144, -25.073, 1500, {.forwards=false, .maxSpeed = 60, .minSpeed = 50},false);
         pros::delay(150);
         Clamp.set_value(HIGH);
-        intake.move(-127);
+        colorSort.resume();
         chassis.turnToPoint(14, -46, 1500);
         chassis.moveToPoint(14, -46, 1500);
         chassis.turnToPoint(20, 0, 1000);

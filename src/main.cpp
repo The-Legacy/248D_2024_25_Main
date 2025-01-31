@@ -50,7 +50,6 @@ void autonomous() {
 	console.println("Running auton...");
 	console.focus();
 	Match_autos.run_auton();
-	
 }
 
 void opcontrol() {

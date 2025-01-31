@@ -1,5 +1,7 @@
 #include "main.h"
+#include "pros/colors.hpp"
 #include "pros/rtos.hpp"
+#include "stormlib/clock.hpp"
 
 void odomTask() {
     console.printf("The robot's heading is %f\n", imu.get_heading());
@@ -80,4 +82,10 @@ void intakeTask() {
 
         pros::delay(50); // Small delay to prevent excessive CPU usage
     }
+}
+
+void autoClock(){
+    autonClock.start(15000);
+    autonClock.waitUntil(200);
+    colorSort().suspend();
 }
