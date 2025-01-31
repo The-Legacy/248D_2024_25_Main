@@ -3,6 +3,9 @@
 #include "pros/adi.h"
 #include "pros/rtos.hpp"
 
+//gloabl bool
+extern bool side;
+
 //Assets
 ASSET(SkillsP1_txt)
 ASSET(SkillsP2_txt)
@@ -24,6 +27,7 @@ void moveRelative(float distance, float maxSpeed, int timeout) {
 };
 
 void redSoloWP(){
+    side = false;
     Clamp.set_value(LOW);
     chassis.setPose(0, 0, 323);
     chassis.moveToPose(-7.5, 9.5, 323, 2000, {.maxSpeed = 110, .minSpeed = 60});
@@ -49,6 +53,7 @@ void redSoloWP(){
 }
 
 void blueSoloWP(){
+    side = true;
     Clamp.set_value(LOW);
     chassis.setPose(0, 0, 37);
     chassis.moveToPose(7.5, 9.5, 37, 2000, {.maxSpeed = 110, .minSpeed = 60});
@@ -74,6 +79,7 @@ void blueSoloWP(){
 }
 
 void redGoalRush(){
+    side = false;
     chassis.setPose(-58.367, -35.377,90);
     preroller.move(-127);
     chassis.moveToPoint(-13.629, -50.226, 1500, {.maxSpeed=100, .minSpeed=60});
@@ -91,6 +97,7 @@ void redGoalRush(){
 }
 
 void blueGoalRush(){
+    side = true;
     chassis.setPose(44.765, -59.842,270);
     preroller.move(-127);
     chassis.moveToPoint(15.028, -54.571, 1500, {.maxSpeed=90, .minSpeed=60}, false);
@@ -108,6 +115,7 @@ void blueGoalRush(){
 }
 
 void blueElimsRush(){
+    side = true;
     chassis.setPose(44.765, -59.842,290);
     preroller.move(-127);
     chassis.moveToPoint(15.028, -51.571, 1500, {.maxSpeed=90, .minSpeed=60}, false);
@@ -133,6 +141,7 @@ void blueElimsRush(){
 }
 
 void redFourDonut(){
+    side = false;
     chassis.setPose(-59.713, 23.362, 270);
     chassis.moveToPoint(-23.362, 23.092, 1500, {.forwards=false, .maxSpeed=85, .minSpeed=60});
     inLift.set_value(HIGH);
@@ -147,6 +156,7 @@ void redFourDonut(){
 }
 
 void blueFourDonut(){
+    side = true;
     chassis.setPose(58.765, 23.631, 90);
     chassis.moveToPoint(29.684, 24.17, 1500, {.forwards=false, .maxSpeed=85, .minSpeed=60});
     inLift.set_value(HIGH);
@@ -161,6 +171,7 @@ void blueFourDonut(){
 }
 
 void rushRed(){
+    side = false;
     chassis.setPose(51, -60,90);
     chassis.moveToPoint(15, -60, 1250, {.forwards = false});
     chassis.turnToPoint(8.61, -53.904, 1000);
@@ -168,6 +179,7 @@ void rushRed(){
 }
 
 void rushBlue(){
+    side = true;
     chassis.setPose(51, -60,90);
     chassis.moveToPoint(15, -60, 1100, {.forwards = false});
     chassis.turnToPoint(8.61, -55, 650, {.forwards = false});
@@ -179,6 +191,7 @@ void rushBlue(){
 }
 
 void skills(){
+    side = false;
     chassis.setPose(0, 0,30);
     currState = 3;
     target = states[currState];
@@ -263,6 +276,7 @@ void skills(){
 }
 
 void skillsYolo(){
+    side = false;
     //allience stake
     chassis.setPose(-61.059, -6.258,270);
     currState = 3;
@@ -350,6 +364,7 @@ void skillsYolo(){
 }
 
 void redWP_yippie(){
+    side = false;
     chassis.setPose(-55.035, 6.817, 220);
     chassis.moveToPose(-61.5, -0.5, 220, 1000, {.maxSpeed=90, .minSpeed= 60}, false);
     //alliance stakes
@@ -383,6 +398,7 @@ void redWP_yippie(){
     }
 
     void blueWP_yippie(){
+        side = true;
         chassis.setPose(55.035, 6.817, 140);
         chassis.moveToPose(58.5, -3, 220, 1000, {.maxSpeed=90, .minSpeed= 60}, false);
         //alliance stakes

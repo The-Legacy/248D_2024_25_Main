@@ -1,4 +1,5 @@
 void odomTask();
 void LBTask();
 void intakeTask();
-void colorSorting();
+void colorSortingBlue();
+void colorSortingRed();

@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/rtos.h"
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
@@ -65,8 +66,8 @@ void opcontrol() {
         chassis.arcade(leftY, rightX, false, 0.5);
 		
 		// set subsystems
+		colorSorting();
 		setLifter();
-		setIntakes();
 		setClamp();
 		setLB();
 		

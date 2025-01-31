@@ -4,6 +4,7 @@
 #include "pros/misc.hpp"
 #include "pros/rtos.hpp"
 
+bool side = true;
 int wallMech = 0;
 static bool toggle{false};
 static bool inLifter{false};
@@ -85,6 +86,48 @@ void setClamp() {
       toggle = !toggle;
     }
   }
+}
+
+void colorSorting(){
+	if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+      hooks.move_velocity(600);
+      preroller.move_velocity(200);
+    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+      if(side){
+		opSense.set_led_pwm(100);
+		opSense.set_integration_time(25);
+			// Run the intake motors
+			hooks.move_velocity(-600);
+			preroller.move_velocity(-200);
+
+			if (opSense.get_hue() < 30 && currState == 0) {
+				// Reverse the hook motor if it is going too slow
+				hooks.move_velocity(600);
+				pros::delay(150); // Delay to allow the motor to reverse
+				hooks.move_velocity(-600); // Resume normal operation
+			}
+
+			pros::delay(50); // Small delay to prevent excessive CPU usage
+	  } else{
+		opSense.set_led_pwm(100);
+		opSense.set_integration_time(25);
+			// Run the intake motors
+			hooks.move_velocity(-600);
+			preroller.move_velocity(-200);
+
+			if (opSense.get_hue() > 180 && currState == 0) {
+				// Reverse the hook motor if it is going too slow
+				hooks.move_velocity(600);
+				pros::delay(150); // Delay to allow the motor to reverse
+				hooks.move_velocity(-600); // Resume normal operation
+			}
+
+			pros::delay(50); // Small delay to prevent excessive CPU usage
+	  }
+    } else {
+      hooks.move_velocity(0);
+      preroller.move_velocity(0);
+    }
 }
 
 void setLifter() {

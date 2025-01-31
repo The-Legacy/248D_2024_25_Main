@@ -15,7 +15,7 @@ void LBTask() {
     }
 }
 
-void colorSorting(){
+void colorSortingBlue(){
     opSense.set_led_pwm(100);
     opSense.set_integration_time(25);
     while (true) {
@@ -24,6 +24,25 @@ void colorSorting(){
         preroller.move_velocity(-200);
 
         if (opSense.get_hue() < 30) {
+            // Reverse the hook motor if it is going too slow
+            hooks.move_velocity(600);
+            pros::delay(150); // Delay to allow the motor to reverse
+            hooks.move_velocity(-600); // Resume normal operation
+        }
+
+        pros::delay(50); // Small delay to prevent excessive CPU usage
+    }
+}
+
+void colorSortingRed(){
+    opSense.set_led_pwm(100);
+    opSense.set_integration_time(25);
+    while (true) {
+        // Run the intake motors
+        hooks.move_velocity(-600);
+        preroller.move_velocity(-200);
+
+        if (opSense.get_hue() > 180) {
             // Reverse the hook motor if it is going too slow
             hooks.move_velocity(600);
             pros::delay(150); // Delay to allow the motor to reverse
