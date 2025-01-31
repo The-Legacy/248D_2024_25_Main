@@ -12,4 +12,5 @@ void redWP_yippie();
 void blueWP_yippie();
 void blueElimsRush();
 
-extern pros::Task colorSort();
+extern pros::Task colorSort;
+extern bool autonOver;

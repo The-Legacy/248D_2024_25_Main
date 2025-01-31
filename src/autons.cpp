@@ -5,10 +5,11 @@
 
 //gloabl bool
 extern bool side;
+bool autonOver = false;
 
 //Assets
-ASSET(SkillsP1_txt)
-ASSET(SkillsP2_txt)
+ASSET(SkillsP1_txt);
+ASSET(SkillsP2_txt);
 
 void moveRelative(float distance, float maxSpeed, int timeout) {
     double headingRadians = chassis.getPose(true).theta;

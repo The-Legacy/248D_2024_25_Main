@@ -3,6 +3,8 @@
 #include "pros/rtos.hpp"
 #include "stormlib/clock.hpp"
 
+extern bool autonOver;
+
 void odomTask() {
     console.printf("The robot's heading is %f\n", imu.get_heading());
     console.printf("The robot's x position is %f\n", chassis.getPose().x);
@@ -20,7 +22,7 @@ void LBTask() {
 void colorSortingBlue(){
     opSense.set_led_pwm(100);
     opSense.set_integration_time(25);
-    while (true) {
+    while (autonOver == false) {
         // Run the intake motors
         hooks.move_velocity(-600);
         preroller.move_velocity(-200);
@@ -39,7 +41,7 @@ void colorSortingBlue(){
 void colorSortingRed(){
     opSense.set_led_pwm(100);
     opSense.set_integration_time(25);
-    while (true) {
+    while (autonOver) {
         // Run the intake motors
         hooks.move_velocity(-600);
         preroller.move_velocity(-200);
@@ -79,7 +81,6 @@ void intakeTask() {
                 lastCheckTime = pros::millis();
             }
         }
-
         pros::delay(50); // Small delay to prevent excessive CPU usage
     }
 }
@@ -87,5 +88,5 @@ void intakeTask() {
 void autoClock(){
     autonClock.start(15000);
     autonClock.waitUntil(200);
-    colorSort().suspend();
+    autonOver = true;
 }
